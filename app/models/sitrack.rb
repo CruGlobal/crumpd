@@ -1,7 +1,7 @@
 class Sitrack < ActiveRecord::Base
   self.table_name = 'sitrack_tracking' # Needs to know a table name
 
-  establish_connection "sitrack_#{Rails.env}"
+  establish_connection "uscm"
 
   # Updates all periods marked as 'keep_updated'
   def self.update_all

@@ -70,5 +70,13 @@ module Mpd
 
 		# For integration into 'prod' database
 		config.active_record.table_name_prefix = 'crumpd_'
+
+    if File.exist?(Rails.root.join('config','memcached.yml'))
+      cache_server = YAML.load_file(Rails.root.join('config','memcached.yml'))[Rails.env]['host']
+    else
+      cache_server = '127.0.0.1'
+    end
+
+    config.cache_store = :dalli_store, cache_server, { :namespace => 'sitrack_session', :expires_in => 86400, :compress => true }
   end
 end

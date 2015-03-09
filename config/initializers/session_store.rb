@@ -8,8 +8,7 @@
 #Mpd::Application.config.session_store :active_record_store
 
 require 'action_dispatch/middleware/session/dalli_store'
-Mpd::Application.config.session_store :dalli_store,
-  :memcache_server => ['127.0.0.1'],
+Mpd::Application.config.session_store ActionDispatch::Session::CacheStore,
   :namespace => 'sessions',
   :key => '_simpd_session',
   :expire_after => 1.days
