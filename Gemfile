@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '~> 3.2.11'
 
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.20'
 gem 'pg'
 
 gem 'jquery-rails', '2.1.4' # Need this version for autocomplete to work
@@ -22,6 +22,7 @@ gem 'redis-session-store'
 
 gem 'puma'
 gem 'syslog-logger'
+gem 'test-unit', '~> 3.0'
 
 group :assets do
   gem 'therubyracer'
