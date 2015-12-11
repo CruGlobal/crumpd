@@ -4,10 +4,10 @@ class ApplicationController < ActionController::Base
   ### Authorization
 
   if Rails.env.production?
-    before_filter RubyCAS::Filter, :except => :index
+    before_filter RubyCAS::Filter, :except => [:index, :lb]
     before_filter RubyCAS::GatewayFilter, :only => :index
   end
-  before_filter :authorize, :except => [:login, :do_login]
+  before_filter :authorize, :except => [:login, :do_login, :lb]
 
   ### SSL Issues
 

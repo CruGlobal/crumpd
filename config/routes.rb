@@ -64,6 +64,8 @@ Mpd::Application.routes.draw do
   # Shameless
   match 'backdoor' => 'home#backdoor'
 
+  get 'monitors/lb' => 'monitors#lb'
+
 	root :to => 'home#index'
 
 	# Catch-all
