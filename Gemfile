@@ -16,7 +16,9 @@ gem 'rubycas-client', '~> 2.3.9.rc1'
 gem 'airbrake'
 
 gem 'whenever', :require => false
-gem 'dalli'
+gem 'redis-rails'
+gem 'redis-namespace'
+gem 'redis-session-store'
 
 gem 'puma'
 gem 'syslog-logger'

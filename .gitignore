@@ -21,3 +21,4 @@ vendor/ruby
 /.vagrant
 /puppet
 .idea
+/.env.*
