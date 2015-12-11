@@ -18,14 +18,19 @@ gem 'airbrake'
 gem 'whenever', :require => false
 gem 'dalli'
 
+gem 'puma'
+gem 'syslog-logger'
+
 group :assets do
-  gem "therubyracer"
-  gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-  gem "twitter-bootstrap-rails"
+  gem 'therubyracer'
+  gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+  gem 'twitter-bootstrap-rails'
 
   # Compression for production
   gem 'uglifier', '>= 1.0.3'
   #gem 'yui-compressor' # Requires java
 end
 
-
+group :development, :test do
+  gem 'dotenv-rails'
+end
