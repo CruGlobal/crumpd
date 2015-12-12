@@ -1,6 +1,7 @@
-namespace :cron do
-  desc "Updates data from Sitrack's database"
-  task :update => :environment do
+class SitrackWorker
+  include Sidekiq::Worker
+
+  def perform(*args)
     now = Time.now
     logger = Rails.logger
 
@@ -10,19 +11,18 @@ namespace :cron do
     #   - t<60 minutes ago: never update
     for p in Period.updated
       if p.last_updated.nil? or (now - p.last_updated) > 119.minutes
-        logger.info 'cron:update --- Needs to update ' + p.name
+        logger.info 'SitrackWorker --- Needs to update ' + p.name
         Sitrack.update_period p
       elsif (now - p.last_updated) > 59.minutes
         if rand(4) == 0 # 1/4 probability
-          logger.info 'cron:update --- Chose to update ' + p.name
+          logger.info 'SitrackWorker --- Chose to update ' + p.name
           Sitrack.update_period p
         else
-          logger.info 'cron:update --- Chose not to update ' + p.name
+          logger.info 'SitrackWorker --- Chose not to update ' + p.name
         end
       else
-        logger.info "cron:update --- Doesn't need to update " + p.name
+        logger.info "SitrackWorker --- Doesn't need to update " + p.name
       end
     end
   end
-
 end

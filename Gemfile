@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+source 'https://gems.contribsys.com/' do
+  gem 'sidekiq-pro'
+end
 
 gem 'rails', '~> 3.2.11'
 
@@ -15,7 +18,6 @@ gem 'rubycas-client', '~> 2.3.9.rc1'
 # For Errbit
 gem 'airbrake'
 
-gem 'whenever', :require => false
 gem 'redis-rails'
 gem 'redis-namespace'
 gem 'redis-session-store'
@@ -23,6 +25,7 @@ gem 'redis-session-store'
 gem 'puma'
 gem 'syslog-logger'
 gem 'test-unit', '~> 3.0'
+gem 'sidekiq-cron'
 
 group :assets do
   gem 'therubyracer'
