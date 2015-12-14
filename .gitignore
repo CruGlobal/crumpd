@@ -13,11 +13,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-database.yml
 vendor/ruby
 
-# Vagrant
-/Vagrantfile
-/.vagrant
-/puppet
 .idea
+/.env.*

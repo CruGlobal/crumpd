@@ -1,14 +1,13 @@
-# Be sure to restart your server when you modify this file.
+# reference: https://github.com/CruGlobal/cap/blob/17bb272471532848bc51608b4039269b81145507/config/initializers/session_store.rb
+require Rails.root.join('config', 'initializers', 'redis')
 
-# Mpd::Application.config.session_store :cookie_store, key: '_mpd_session'
-
-# Use the database for sessions instead of the cookie-based default,
-# which shouldn't be used to store highly confidential information
-# (create the session table with "rails generate session_migration")
-#Mpd::Application.config.session_store :active_record_store
-
-require 'action_dispatch/middleware/session/dalli_store'
-Mpd::Application.config.session_store ActionDispatch::Session::CacheStore,
-  :namespace => 'sessions',
-  :key => '_simpd_session',
-  :expire_after => 1.days
+Rails.application.config.session_store :redis_session_store, {
+  key: '_simpd_session',
+  redis: {
+    host: Redis.current.client.host,
+    port: Redis.current.client.port,
+    db: 2,
+    key_prefix: "simpd:session:",
+    expire_after: 1.days
+  }
+}
