@@ -157,7 +157,9 @@ class Sitrack < ActiveRecord::Base
   # Updates all teams for a period
   # (Called within update_period)
   def self.update_teams p
-    for line in teams_query(p.teams)
+    teams = teams_query(p.teams)
+    return unless teams
+    teams.each do |line|
       if t = Team.find_by_sitrack_id(line[:teamID])
         t.sitrack_name = line[:name] if !line[:name].blank?
         t.save
