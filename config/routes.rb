@@ -1,4 +1,5 @@
 require 'sidekiq/web'
+require 'sidekiq/cron/web'
 Mpd::Application.routes.draw do
 
   resources :regions, :except => [:show]
