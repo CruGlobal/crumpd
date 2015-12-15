@@ -18,6 +18,7 @@ gem 'rubycas-client', '~> 2.3.9.rc1'
 gem 'rollbar'
 
 gem 'redis-rails'
+gem 'sinatra'
 gem 'redis-namespace'
 gem 'redis-session-store'
 

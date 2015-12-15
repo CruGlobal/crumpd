@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Mpd::Application.routes.draw do
 
   resources :regions, :except => [:show]
@@ -65,6 +66,8 @@ Mpd::Application.routes.draw do
   match 'backdoor' => 'home#backdoor'
 
   get 'monitors/lb' => 'monitors#lb'
+
+	mount Sidekiq::Web => '/sidekiq'
 
 	root :to => 'home#index'
 
