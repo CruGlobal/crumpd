@@ -1,5 +1,10 @@
 class SitrackWorker
   include Sidekiq::Worker
+  sidekiq_options retry: 5
+
+  sidekiq_retry_in do |count|
+    30 * (2 ** count)
+  end
 
   def perform(*args)
     now = Time.now
