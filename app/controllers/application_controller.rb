@@ -95,8 +95,8 @@ class ApplicationController < ActionController::Base
               )
             # Add this person to the database
             @cas_user.save
-            # Notify Airbrake, as this shouldn't happen often
-            Airbrake.notify Exception.new("Added user ##{@cas_user.id} from login attributes: #{session[:cas_extra_attributes]}")
+            # Notify Rollbar, as this shouldn't happen often
+            Rollbar.error Exception.new("Added user ##{@cas_user.id} from login attributes: #{session[:cas_extra_attributes]}")
           end
         end
         if @cas_user and (@cas_user.last_login.nil? or (Time.now - @cas_user.last_login) > 20.minutes)
